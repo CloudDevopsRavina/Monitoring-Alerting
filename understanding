@@ -58,6 +58,7 @@ Precomputes frequently used metrics for dashboards:
 
 - record: instance:cpu_usage:rate5m
   expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+-----prometheus--- 100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m])) by (instance))
 
 
 Stores these results as new time series in TSDB for faster queries.
